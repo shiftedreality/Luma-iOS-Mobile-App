@@ -11,6 +11,7 @@ import UIKit
 import Parse
 import CoreLocation
 import UserNotifications
+import WebKit
 
 import Alamofire
 import SwiftyJSON
@@ -33,6 +34,7 @@ class Home: UIViewController, UITableViewDelegate, UITableViewDataSource, UIText
     @IBOutlet weak var categoryTableView: UITableView!
     @IBOutlet weak var searchTxt: UITextField!
     @IBOutlet weak var featuredScrollView: UIScrollView!
+    @IBOutlet weak var webContent: WKWebView!
     let refreshControl = UIRefreshControl()
     
     
@@ -98,6 +100,18 @@ class Home: UIViewController, UITableViewDelegate, UITableViewDataSource, UIText
             super.viewDidLoad()
         
         print("Start");
+        
+        
+        let style = """
+                <style>.fit-picture {width: 750px;}</style>
+                <div><p style='font-size:300%;'>Hello!</p>
+                     <img class='fit-picture'
+                          src='https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg'
+                          alt='Grapefruit slice atop a pile of other slices'>
+                </div>
+        """;
+        
+        self.webContent.loadHTMLString(style, baseURL: nil)
         
         
         locationManager = CLLocationManager()
