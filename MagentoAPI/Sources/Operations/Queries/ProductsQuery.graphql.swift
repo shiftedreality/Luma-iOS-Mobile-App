@@ -158,6 +158,7 @@ public class ProductsQuery: GraphQLQuery {
             }
           }
         }
+
         /// Products.Item.Image
         ///
         /// Parent Type: `ProductImage`

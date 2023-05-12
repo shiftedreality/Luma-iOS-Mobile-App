@@ -101,17 +101,40 @@ class Home: UIViewController, UITableViewDelegate, UITableViewDataSource, UIText
         
         print("Start");
         
+        let audienceId: FilterEqualTypeInput = FilterEqualTypeInput(eq: .some(String("0f0aa8b5-afc9-4328-bc8c-2a811af8649f")))
+        var inputDynamicBlock = DynamicBlocksFilterInput(audience_id: .some(audienceId), type: GraphQLEnum(DynamicBlockTypeEnum.specified))
+        Network.shared.apollo.fetch(query: DynamicBlocksQuery(input: GraphQLNullable(inputDynamicBlock))) { result in
+            switch result {
+            case .success(let response):
+                if let banners = response.data?.dynamicBlocks.items {
+                    print("Banners", banners)
+                    
+                    var bannersHtml = "";
+                    
+                    for banner in banners {
+                        bannersHtml += banner?.content.html ??  ""
+                    }
+                    
+                    self.webContent.loadHTMLString(bannersHtml, baseURL: nil)
+                    
+                    //self.productsArray = products
+                    //self.productsCollView.reloadData()
+                    //self.hideHUD()
+                    
+                } else if let errors = response.errors {
+                    print("Errors", errors)
+                    print("Errors", errors)
+                }
+            case .failure(let error):
+                print("Test Error",error)
+            }
+        }
         
         let style = """
-                <style>.fit-picture {width: 750px;}</style>
-                <div><p style='font-size:300%;'>Hello!</p>
-                     <img class='fit-picture'
-                          src='https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg'
-                          alt='Grapefruit slice atop a pile of other slices'>
-                </div>
+                <style>#html-body [data-pb-style=XU539CS]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type=\"row\" data-appearance=\"contained\" data-element=\"main\"><div data-enable-parallax=\"0\" data-parallax-speed=\"0.5\" data-background-images=\"{}\" data-background-type=\"image\" data-video-loop=\"true\" data-video-play-only-visible=\"true\" data-video-lazy-load=\"true\" data-video-fallback-src=\"\" data-element=\"inner\" data-pb-style=\"XU539CS\"><div data-content-type=\"text\" data-appearance=\"default\" data-element=\"main\"><p><span style=\"text-decoration: underline; font-size: 52px;\"><strong>Dynamic Block Hello World</strong></span></p></div></div></div>
         """;
         
-        self.webContent.loadHTMLString(style, baseURL: nil)
+        
         
         
         locationManager = CLLocationManager()
