@@ -29,6 +29,7 @@ import AEPMessaging
 import AEPSignal
 import AEPServices
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -39,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Adobe Experience Platform - Config
         MobileCore.setLogLevel(.trace)
+        MobileCore.setLogLevel(.debug)
         //Replace with your tags app id - details provided in tutorial
         let currentAppId = "22bf1a13013f/a5161fdb681d/launch-200ed152cbb0-development"
 
@@ -79,7 +81,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
         
         loadProducts()
         return true

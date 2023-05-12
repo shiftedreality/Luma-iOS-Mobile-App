@@ -546,7 +546,7 @@
 			);
 			mainGroup = 724B96F71C522DF100F7704D;
 			packageReferences = (
-				8B07868629D62C60007B4208 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				8B07868629D62C60007B4208 /* XCRemoteSwiftPackageReference "apollo-ios.git" */,
 			);
 			productRefGroup = 724B97011C522DF200F7704D /* Products */;
 			projectDirPath = "";
@@ -951,7 +951,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8B07868629D62C60007B4208 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+		8B07868629D62C60007B4208 /* XCRemoteSwiftPackageReference "apollo-ios.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
 			requirement = {
@@ -964,7 +964,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		8B07868729D62C60007B4208 /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8B07868629D62C60007B4208 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			package = 8B07868629D62C60007B4208 /* XCRemoteSwiftPackageReference "apollo-ios.git" */;
 			productName = Apollo;
 		};
 		8B23C7F729D60F09008933B7 /* MagentoAPI */ = {

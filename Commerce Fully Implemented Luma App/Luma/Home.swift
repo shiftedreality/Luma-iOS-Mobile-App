@@ -22,9 +22,11 @@ import AEPEdge
 import AEPCore
 import AEPEdgeIdentity
 import AEPEdgeConsent
+
 import Foundation
 import Apollo
 import MagentoAPI
+
 
 class Home: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate
 {
@@ -61,12 +63,14 @@ class Home: UIViewController, UITableViewDelegate, UITableViewDataSource, UIText
                     "pageViews": [
                         "value": 1
                     ],
-                    "name": "Home page"
+                    "siteSection": "Category",
+                    "name": "Home page test"
                 ]
             ]
         ]
 
         //Page View
+        /**
         xdmData["_techmarketingdemos"] = [
             "appInformation": [
                 "appStateDetails": [
@@ -77,17 +81,26 @@ class Home: UIViewController, UITableViewDelegate, UITableViewDataSource, UIText
                     ]
                 ]
             ]
-        ]
+        ]**/
         
-        let experienceEvent = ExperienceEvent(xdm: xdmData)
-        Edge.sendEvent(experienceEvent: experienceEvent)
-        
-        // Adobe Experience Platform - Update Identity
+        /**
         let emailLabel = "mobileuser@example.com"
-        
         let identityMap: IdentityMap = IdentityMap()
         identityMap.add(item: IdentityItem(id: emailLabel), withNamespace: "Email")
-        Identity.updateIdentities(with: identityMap)
+        Identity.updateIdentities(with: identityMap)**/
+        
+        let experienceEvent = ExperienceEvent(xdm: xdmData)
+        //Edge.sendEvent(experienceEvent: experienceEvent)
+        
+        Edge.sendEvent(experienceEvent: experienceEvent) { (handles: [EdgeEventHandle]) in
+            
+            let red = handles;
+            
+                    // Handle the Edge Network response
+        }
+        
+        
+        // Adobe Experience Platform - Update Identity
     }
     
     
