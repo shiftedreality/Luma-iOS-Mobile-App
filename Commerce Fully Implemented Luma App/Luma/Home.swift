@@ -82,13 +82,20 @@ class Home: UIViewController, UITableViewDelegate, UITableViewDataSource, UIText
         ]
         
         let experienceEvent = ExperienceEvent(xdm: xdmData)
-        Edge.sendEvent(experienceEvent: experienceEvent)
+        //Edge.sendEvent(experienceEvent: experienceEvent)
+        Edge.sendEvent(experienceEvent: experienceEvent) { (handles: [EdgeEventHandle]) in
+    
+            // Handle the Edge Network response
+        }
         
         // Adobe Experience Platform - Update Identity
         let emailLabel = "mobileuser@example.com"
+        //let identityMap: IdentityMap = IdentityMap()
+        //identityMap.add(item: IdentityItem(id: emailLabel), withNamespace: "Email")
+        //Identity.updateIdentities(with: identityMap)
         
         let identityMap: IdentityMap = IdentityMap()
-        identityMap.add(item: IdentityItem(id: emailLabel), withNamespace: "Email")
+        identityMap.add(item: IdentityItem(id: emailLabel, primary: true), withNamespace: "Email")
         Identity.updateIdentities(with: identityMap)
     }
     
@@ -129,13 +136,6 @@ class Home: UIViewController, UITableViewDelegate, UITableViewDataSource, UIText
                 print("Test Error",error)
             }
         }
-        
-        let style = """
-                <style>#html-body [data-pb-style=XU539CS]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type=\"row\" data-appearance=\"contained\" data-element=\"main\"><div data-enable-parallax=\"0\" data-parallax-speed=\"0.5\" data-background-images=\"{}\" data-background-type=\"image\" data-video-loop=\"true\" data-video-play-only-visible=\"true\" data-video-lazy-load=\"true\" data-video-fallback-src=\"\" data-element=\"inner\" data-pb-style=\"XU539CS\"><div data-content-type=\"text\" data-appearance=\"default\" data-element=\"main\"><p><span style=\"text-decoration: underline; font-size: 52px;\"><strong>Dynamic Block Hello World</strong></span></p></div></div></div>
-        """;
-        
-        
-        
         
         locationManager = CLLocationManager()
         locationManager?.delegate = self
