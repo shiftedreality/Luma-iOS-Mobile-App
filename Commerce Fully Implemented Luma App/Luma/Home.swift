@@ -124,12 +124,7 @@ class Home: UIViewController, UITableViewDelegate, UITableViewDataSource, UIText
                     
                     self.webContent.loadHTMLString(bannersHtml, baseURL: nil)
                     
-                    //self.productsArray = products
-                    //self.productsCollView.reloadData()
-                    //self.hideHUD()
-                    
                 } else if let errors = response.errors {
-                    print("Errors", errors)
                     print("Errors", errors)
                 }
             case .failure(let error):
